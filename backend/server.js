@@ -16,10 +16,15 @@ const connection = mongoose.connection;
 
 connection.once('open', function() {
     console.log("MongoDB database connection established successfully");
+    console.log("********************")
 })
 
+todoRoutes.route('/').get(function(req,res){
+    console.log(todos)
+    res.json(todos);
+});
+
 todoRoutes.route('/').get(function(req, res) {
-    console.log("GET REQUEST INITIATED", req, res)
     Todo.find(function(err, todos) {
         if (err) {
             console.log(err);
